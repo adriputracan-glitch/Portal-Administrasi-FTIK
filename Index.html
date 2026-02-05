@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PORTAL SISTEM ADMINISTRASI FTIK</title>
+
+<style>
+/* ================= GLOBAL ================= */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-image: url("https://i.imgur.com/6JamZoo.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: -1;
+}
+
+/* ================= RUNNING TEXT ================= */
+.running-text {
+  background: rgba(255,215,0,0.85);
+  color: #062a55;
+  padding: 10px 0;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.running-text span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll 18s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes scroll {
+  to { transform: translateX(-100%); }
+}
+
+/* ================= HEADER ================= */
+header {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px);
+  padding: 20px;
+  text-align: center;
+}
+
+.header-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header-logo-left,
+.header-logo-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.header-logo-left { left: 20px; }
+.header-logo-right { right: 20px; }
+
+.header-logo-left img,
+.header-logo-right img {
+  height: 60px;
+}
+
+#date-time {
+  margin-top: 10px;
+  color: #ffd700;
+  font-weight: 600;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 30px;
+}
+
+/* ================= CARD BASE ================= */
+a.card {
+  padding: 28px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  backdrop-filter: blur(8px);
+  transition: all .35s ease;
+  box-shadow: 0 6px 14px rgba(0,0,0,.35);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= CARD COLORS ================= */
+.container a.card:nth-child(1){
+  background: linear-gradient(135deg, rgba(0,140,255,.55), rgba(255,255,255,.25));
+}
+.container a.card:nth-child(2){
+  background: linear-gradient(135deg, rgba(255,215,0,.55), rgba(255,255,255,.25));
+}
+.container a.card:nth-child(3){
+  background: linear-gradient(135deg, rgba(0,200,160,.55), rgba(255,255,255,.25));
+}
+.container a.card:nth-child(4){
+  background: linear-gradient(135deg, rgba(255,100,100,.55), rgba(255,255,255,.25));
+}
+.container a.card:nth-child(5){
+  background: linear-gradient(135deg, rgba(160,120,255,.55), rgba(255,255,255,.25));
+}
+.container a.card:nth-child(6){
+  background: linear-gradient(135deg, rgba(180,180,180,.55), rgba(255,255,255,.25));
+}
+.container a.card:nth-child(7){
+  background: linear-gradient(135deg, rgba(120,120,120,.65), rgba(255,255,255,.25));
+}
+.container a.card:nth-child(8){
+  background: linear-gradient(135deg, rgba(0,180,120,.55), rgba(255,255,255,.25));
+}
+
+/* ================= HOVER EFFECT ================= */
+a.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.15);
+  opacity: 0;
+  transition: .35s;
+}
+
+a.card:hover::before {
+  opacity: 1;
+}
+
+a.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow:
+    0 14px 30px rgba(0,0,0,.55),
+    0 0 25px rgba(255,215,0,.7);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  padding: 25px;
+  font-size: 15px;
+  opacity: .9;
+}
+
+/* ================= LOADING ================= */
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255,255,255,.3);
+  border-top: 6px solid #ffd700;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #ffd700;
+  font-weight: bold;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="running-text">
+  <span>SELAMAT DATANG DI PORTAL ADMINISTRASI FTIK — UIN MAHMUD YUNUS BATU SANGKAR</span>
+</div>
+
+<header>
+  <div class="header-wrap">
+    <div class="header-logo-left">
+      <img src="https://i.imgur.com/pR1XcBC.png">
+    </div>
+    <div>
+      <h1>PORTAL SISTEM ADMINISTRASI FTIK</h1>
+      <div id="date-time"></div>
+    </div>
+    <div class="header-logo-right">
+      <img src="https://i.imgur.com/LDj4q9i.png">
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <a class="card" onclick="showLoading()" href="https://script.google.com/macros/s/AKfycbwmk8waDDJW1xC9scNFIbOk2Sh6hmB27q8JzdXTfG6tPF2-0U_Tjx0aWr1p99k9lJj1/exec">📗 Penunjuk Pembimbing</a>
+  <a class="card" onclick="showLoading()" href="https://script.google.com/macros/s/AKfycbyz8Ah1EopNhnd9zZg7slaOZj9KOrazhZP0e0xaK57nr4iaCvB6kkouR1OW4RJMO2fg/exec">📘 Penunjuk Penguji Seminar Proposal</a>
+  <a class="card" onclick="showLoading()" href="https://script.google.com/macros/s/AKfycbx7Pq9Vlfij-Su7Sq9VIKa2uensS3BNfzFhnnDwsZ7yEYJ_wX0wNbx2qAfc7lPcfa4I/exec">📙 Penunjuk Penguji Munaqasah</a>
+  <a class="card" onclick="showLoading()" href="https://script.google.com/macros/s/AKfycbyBxZHfBI-3gnrkDOp5-inByULGDD8xlX58V470vnRTRiN0KOvktrIhtb_bYegavLy8/exec">📒 Rekap Penguji Seminar Proposal</a>
+  <a class="card" onclick="showLoading()" href="https://script.google.com/macros/s/AKfycbzXnckmrlURyiKutYSGeg4G2IK1kHZuphTm2m9RhXlBRLYgIgcmkrCZKv9n0MJHHKQ/exec">📓 Rekap Pembimbing</a>
+  <a class="card" onclick="showLoading()" href="https://script.google.com/macros/s/AKfycbyKygiZoagQVVYDbiBBdJyUz01YNOkgbYHqZ8thdqlRY86HvW5Kd--VAxEqG6rFBNq6/exec">📕 Cek Judul</a>
+  <a class="card" onclick="showLoading()" href="https://script.google.com/macros/s/AKfycbzYPr-zd6e5wXDlPBihkY3io5E9AlzzQz-orWyfj48FtsNkibTE4G7oArNZppcpPCQ/exec">📕 Input Nilai Munaqasah</a>
+  <a class="card" onclick="showLoading()" href="https://script.google.com/macros/s/AKfycbxXcr7WYW2Dq_RNpctkobQCbj5kIVQs9hn_YUUAPEMLyVpcUXZW-pseFloUpc4-pumE/exec">📙 Input Nilai Seminar Proposal</a>
+</div>
+
+<footer>© 2025 • Created with ❤️ by Adri Putra Can</footer>
+
+<div id="loading-overlay">
+  <div class="spinner"></div>
+  <div class="loading-text">Memuat aplikasi...</div>
+</div>
+
+<script>
+function showLoading(){
+  document.getElementById("loading-overlay").style.display = "flex";
+}
+
+function updateDateTime(){
+  document.getElementById("date-time").innerHTML =
+    new Date().toLocaleString("id-ID", {
+      dateStyle: "full",
+      timeStyle: "medium"
+    }).toUpperCase();
+}
+setInterval(updateDateTime,1000);
+updateDateTime();
+</script>
+
+</body>
+</html>
